@@ -33,13 +33,19 @@ const css = `
   }
 
   .app-shell {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 16px;
-    background: linear-gradient(160deg, #e8f5f0 0%, #f5f3ef 50%, #fdf0ea 100%);
-  }
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+
+  background: 
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url("https://images.unsplash.com/photo-1580281658629-2bff1d3c66c7");
+
+  background-size: cover;
+  background-position: center;
+ }
 
   .card {
     background: #fff;
@@ -539,6 +545,12 @@ function buildSlots(dateLabel) {
   }));
 }
 
+const SLIDES = [
+  "https://images.unsplash.com/photo-1584515933487-779824d29309",
+  "https://images.unsplash.com/photo-1576091160550-2173dba999ef",
+  "https://images.unsplash.com/photo-1582750433449-648ed127bb54"
+];
+
 const DATES = [
   { label: "Today", key: "today" },
   { label: "Tomorrow", key: "tmrw" },
@@ -619,9 +631,25 @@ export default function App() {
 
 // ─── Welcome ─────────────────────────────────────────────────────────────────
 function WelcomeScreen({ onPath }) {
+  const [slideIndex, setSlideIndex] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setSlideIndex((prev) => (prev + 1) % SLIDES.length);
+  }, 3000);
+  return () => clearInterval(interval);
+}, []);
   return (
     <div className="anim">
-      <div style={{ background: "#0F6E56", padding: "32px 28px 24px" }}>
+      <div style={{
+        padding: "32px 28px 24px",
+        background: `
+          linear-gradient(rgba(15,110,86,0.85), rgba(15,110,86,0.85)),
+          url("https://images.unsplash.com/photo-1579684385127-1ef15d508118")
+        `,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+       }}>
         <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>
           Est. 2008 · Chennai
         </div>
@@ -635,6 +663,43 @@ function WelcomeScreen({ onPath }) {
 
       <div className="card-body">
         <div style={{ marginBottom: 6 }}>
+          <div style={{
+  height: 140,
+  borderRadius: 14,
+  overflow: "hidden",
+  marginBottom: 16,
+  position: "relative"
+}}>
+  <img
+    src={SLIDES[slideIndex]}
+    alt="clinic"
+    style={{
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      transition: "0.5s"
+    }}
+  />
+
+  {/* dots */}
+  <div style={{
+    position: "absolute",
+    bottom: 8,
+    left: "50%",
+    transform: "translateX(-50%)",
+    display: "flex",
+    gap: 6
+  }}>
+    {SLIDES.map((_, i) => (
+      <div key={i} style={{
+        width: 6,
+        height: 6,
+        borderRadius: "50%",
+        background: i === slideIndex ? "#fff" : "rgba(255,255,255,0.5)"
+      }} />
+    ))}
+  </div>
+</div>
           <div style={{ fontSize: 11, fontWeight: 500, color: "#888780", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10 }}>
             Our specialities
           </div>
