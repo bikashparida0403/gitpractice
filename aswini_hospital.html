@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aswini Hospital Ltd. – Thrissur's Premier Multispecialty Hospital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1f3c;
+    --teal: #0d7d6e;
+    --teal-light: #12a090;
+    --gold: #c89a3b;
+    --gold-light: #e8b84b;
+    --cream: #f8f5ef;
+    --white: #ffffff;
+    --gray-light: #f0eeea;
+    --gray-mid: #8a8a8a;
+    --text-dark: #111827;
+    --text-body: #374151;
+    --red-emergency: #c0392b;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--navy);
+    color: rgba(255,255,255,0.8);
+    font-size: 0.82rem;
+    padding: 8px 0;
+  }
+  .topbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .topbar a { color: rgba(255,255,255,0.8); text-decoration: none; }
+  .topbar a:hover { color: var(--gold-light); }
+  .topbar-contacts { display: flex; gap: 24px; align-items: center; }
+  .topbar-contacts span { display: flex; align-items: center; gap: 6px; }
+  .topbar-right { display: flex; gap: 12px; align-items: center; }
+  .emergency-badge {
+    background: var(--red-emergency);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+    animation: pulse-red 2s infinite;
+  }
+  @keyframes pulse-red {
+    0%,100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.5); }
+    50% { box-shadow: 0 0 0 6px rgba(192,57,43,0); }
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    border-bottom: 3px solid var(--teal);
+  }
+  .navbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 46px; height: 46px;
+    background: linear-gradient(135deg, var(--teal), var(--navy));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    color: white;
+    flex-shrink: 0;
+  }
+  .logo-text { display: flex; flex-direction: column; }
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  .logo-sub {
+    font-size: 0.68rem;
+    color: var(--teal);
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { background: var(--gray-light); color: var(--teal); }
+  .nav-links .active a { color: var(--teal); font-weight: 600; }
+  .nav-cta {
+    background: var(--teal);
+    color: white !important;
+    padding: 9px 20px !important;
+    border-radius: 8px !important;
+  }
+  .nav-cta:hover { background: var(--teal-light) !important; color: white !important; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #0d2d50 50%, #0e3d59 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 24px 60px;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 70% 50%, rgba(13,125,110,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 90% 10%, rgba(200,154,59,0.15) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(200,154,59,0.15);
+    border: 1px solid rgba(200,154,59,0.4);
+    color: var(--gold-light);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .hero-badge span { width: 6px; height: 6px; background: var(--gold-light); border-radius: 50%; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+  .hero p {
+    color: rgba(255,255,255,0.72);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 520px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(13,125,110,0.4);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,125,110,0.5); }
+  .btn-outline {
+    background: transparent;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  /* Hero stats */
+  .hero-stats {
+    display: flex;
+    gap: 28px;
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    flex-wrap: wrap;
+  }
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-top: 4px;
+  }
+
+  /* Appointment card */
+  .appt-card {
+    background: white;
+    border-radius: 20px;
+    padding: 36px 32px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .appt-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .appt-card p { color: var(--gray-mid); font-size: 0.85rem; margin-bottom: 24px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    transition: border-color 0.2s;
+    outline: none;
+    background: white;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--teal); }
+  .appt-card .btn-primary { width: 100%; justify-content: center; }
+
+  /* ── SECTION TITLES ── */
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 28px; height: 2px;
+    background: var(--teal);
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .section-title em {
+    font-style: normal;
+    color: var(--teal);
+  }
+  .section-desc {
+    color: var(--text-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-top: 14px;
+  }
+
+  /* ── FACILITIES ── */
+  .facilities {
+    background: var(--cream);
+    padding: 90px 24px;
+  }
+  .facilities-inner { max-width: 1200px; margin: 0 auto; }
+  .facilities-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 52px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .facility-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .facility-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  .facility-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--teal);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+    transform-origin: bottom;
+    border-radius: 0 2px 2px 0;
+  }
+  .facility-card:hover { border-color: var(--teal); box-shadow: 0 12px 40px rgba(13,125,110,0.12); transform: translateY(-4px); }
+  .facility-card:hover::before { transform: scaleY(1); }
+  .facility-icon {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, rgba(13,125,110,0.1), rgba(13,125,110,0.05));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+  .facility-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .facility-card p { color: var(--text-body); font-size: 0.87rem; line-height: 1.6; }
+
+  /* ── WHY CHOOSE ── */
+  .why-choose {
+    padding: 90px 24px;
+    background: white;
+  }
+  .why-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .why-visual {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .why-visual-bg {
+    background: linear-gradient(135deg, var(--navy), #0d4a5e);
+    border-radius: 24px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-visual-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(13,125,110,0.3), transparent);
+  }
+  .why-big-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 7rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+  }
+  .why-feature-list { position: relative; z-index: 2; }
+  .why-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .why-feature:last-child { border-bottom: none; }
+  .why-feature-icon {
+    width: 44px; height: 44px;
+    background: rgba(13,125,110,0.3);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    border: 1px solid rgba(13,125,110,0.4);
+  }
+  .why-feature-text h5 { color: white; font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+  .why-feature-text p { color: rgba(255,255,255,0.55); font-size: 0.82rem; line-height: 1.5; }
+  .why-points { margin-top: 36px; }
+  .why-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .why-point:last-child { border-bottom: none; }
+  .check { width: 26px; height: 26px; background: rgba(13,125,110,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; color: var(--teal); font-size: 0.8rem; font-weight: 700; }
+  .why-point h5 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .why-point p { font-size: 0.84rem; color: var(--text-body); line-height: 1.5; }
+
+  /* ── DEPARTMENTS ── */
+  .departments {
+    padding: 90px 24px;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .departments::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(13,125,110,0.2), transparent);
+  }
+  .departments-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+  .departments-inner .section-eyebrow { color: var(--gold-light); }
+  .departments-inner .section-eyebrow::before { background: var(--gold-light); }
+  .departments-inner .section-title { color: white; }
+  .departments-inner .section-title em { color: var(--teal-light); }
+  .dept-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .dept-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 24px 16px;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .dept-card:hover { background: rgba(13,125,110,0.2); border-color: rgba(13,125,110,0.4); transform: translateY(-4px); }
+  .dept-icon { font-size: 2rem; margin-bottom: 12px; }
+  .dept-card h5 { color: rgba(255,255,255,0.88); font-size: 0.83rem; font-weight: 600; line-height: 1.3; }
+
+  /* ── 24/7 SECTION ── */
+  .service-section {
+    padding: 90px 24px;
+    background: var(--cream);
+  }
+  .service-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .service-cards { display: flex; flex-direction: column; gap: 20px; }
+  .service-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 28px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    border-left: 4px solid transparent;
+  }
+  .service-card:hover { border-left-color: var(--teal); box-shadow: 0 8px 32px rgba(13,125,110,0.12); }
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: rgba(13,125,110,0.15);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 48px;
+  }
+  .service-card h4 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .service-card p { font-size: 0.86rem; color: var(--text-body); line-height: 1.6; }
+  .trauma-box {
+    background: linear-gradient(135deg, var(--navy), #0d3d5c);
+    color: white;
+    border-radius: 20px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .trauma-box::before {
+    content: '';
+    position: absolute;
+    bottom: -30px; right: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(13,125,110,0.15);
+  }
+  .trauma-box::after {
+    content: '';
+    position: absolute;
+    top: -20px; right: 60px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: rgba(200,154,59,0.1);
+  }
+  .trauma-box .section-eyebrow { color: var(--gold-light); }
+  .trauma-box .section-eyebrow::before { background: var(--gold-light); }
+  .trauma-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.3;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .trauma-box p { color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.7; margin-bottom: 28px; position: relative; }
+  .trauma-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    position: relative;
+  }
+  .trauma-stat {
+    background: rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .trauma-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+  .trauma-stat .lbl { font-size: 0.76rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1e;
+    color: rgba(255,255,255,0.6);
+    padding: 64px 24px 0;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand .logo-name { color: white; font-size: 1.1rem; }
+  .footer-brand .logo-sub { color: var(--teal-light); }
+  .footer-brand p { font-size: 0.84rem; line-height: 1.7; margin-top: 16px; color: rgba(255,255,255,0.5); }
+  .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+  .social-btn {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .social-btn:hover { background: var(--teal); color: white; border-color: var(--teal); }
+  .footer-col h6 {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.86rem;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--teal-light); }
+  .contact-item { display: flex; gap: 10px; margin-bottom: 14px; }
+  .contact-item-icon { font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+  .contact-item p { font-size: 0.84rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+  .contact-item strong { color: rgba(255,255,255,0.75); display: block; }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .appt-card { max-width: 480px; }
+    .facility-grid { grid-template-columns: repeat(2, 1fr); }
+    .dept-grid { grid-template-columns: repeat(4, 1fr); }
+    .why-inner { grid-template-columns: 1fr; }
+    .service-inner { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .dept-grid { grid-template-columns: repeat(3, 1fr); }
+    .facility-grid { grid-template-columns: 1fr; }
+    .topbar-contacts span:not(:first-child) { display: none; }
+    .hero-stats { gap: 20px; }
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .dept-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contacts">
+      <span>📞 <a href="tel:04876612345">0487 6612345</a></span>
+      <span>📱 <a href="tel:9895601234">9895601234</a></span>
+      <span>✉️ <a href="mailto:aswinihospitalprd@gmail.com">aswinihospitalprd@gmail.com</a></span>
+    </div>
+    <div class="topbar-right">
+      <span class="emergency-badge">🚑 24/7 Emergency</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">✚</div>
+      <div class="logo-text">
+        <span class="logo-name">Aswini Hospital</span>
+        <span class="logo-sub">Thrissur · Est. 1990</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Departments</a></li>
+      <li><a href="#">Specialty Clinics</a></li>
+      <li><a href="#">Bone & Joint</a></li>
+      <li><a href="#">Institute</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#" class="nav-cta">Book Appointment</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-content fade-up">
+      <div class="hero-badge"><span></span> Thrissur's Premier Multispecialty Hospital</div>
+      <h1>Advanced Healthcare,<br><em>Compassionate</em> Care</h1>
+      <p>With 30+ specialized departments, world-class surgeons, and state-of-the-art infrastructure, Aswini Hospital has been Thrissur's most trusted healthcare partner for decades.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">📅 Book Appointment</a>
+        <a href="#" class="btn-outline">🏥 Our Departments</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">300+</div>
+          <div class="stat-label">Hospital Beds</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">Departments</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Advanced ICUs</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Emergency Care</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appointment Card -->
+    <div class="appt-card fade-up delay-2">
+      <h3>Book an Appointment</h3>
+      <p>Quick, easy, and confirmed instantly</p>
+      <div class="form-group">
+        <label>Your Full Name</label>
+        <input type="text" placeholder="e.g. Rajan Menon">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 98765 43210">
+      </div>
+      <div class="form-group">
+        <label>Department</label>
+        <select>
+          <option>Select a department</option>
+          <option>Cardiology</option>
+          <option>Orthopaedics</option>
+          <option>Neurology</option>
+          <option>Gynaecology</option>
+          <option>Paediatrics</option>
+          <option>General Surgery</option>
+          <option>Oncology</option>
+          <option>Emergency Medicine</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Preferred Date</label>
+        <input type="date">
+      </div>
+      <button class="btn-primary">Confirm Appointment →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section class="facilities">
+  <div class="facilities-inner">
+    <div class="facilities-header">
+      <div>
+        <div class="section-eyebrow">World-Class Facilities</div>
+        <h2 class="section-title">We Are At <em>Your Service</em></h2>
+        <p class="section-desc">Discover the comprehensive range of world-class facilities and services designed to provide exceptional care and comfort.</p>
+      </div>
+    </div>
+    <div class="facility-grid">
+      <div class="facility-card">
+        <div class="facility-icon">🚑</div>
+        <h4>24/7 Emergency</h4>
+        <p>Our emergency department offers round-the-clock care, staffed by skilled professionals and equipped with advanced technology for immediate medical attention.</p>
+      </div>
+      <div class="facility-card">
+        <div class="facility-icon">🛏️</div>
+        <h4>Over 300 Beds</h4>
+        <p>A wide range of accommodation options to suit your needs and budget, ensuring comfort throughout your recovery journey.</p>
+      </div>
+      <div class="facility-card">
+        <div class="facility-icon">🏥</div>
+        <h4>4 Advanced ICUs</h4>
+        <p>State-of-the-art intensive care units provide advanced life support and round-the-clock monitoring for patients in critical condition.</p>
+      </div>
+      <div class="facility-card">
+        <div class="facility-icon">🔬</div>
+        <h4>State-of-the-Art Lab</h4>
+        <p>Our laboratory offers a wide range of tests and delivers precise, rapid results to support effective and timely treatment plans.</p>
+      </div>
+      <div class="facility-card">
+        <div class="facility-icon">🩸</div>
+        <h4>Blood Bank</h4>
+        <p>Ensuring a steady supply of blood, including rare blood types — our blood bank is dedicated 24/7 to saving lives.</p>
+      </div>
+      <div class="facility-card">
+        <div class="facility-icon">⚕️</div>
+        <h4>4 Surgical Theaters</h4>
+        <p>Meticulously maintained operation theaters equipped with the latest surgical technology to deliver safe and successful procedures.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="why-choose">
+  <div class="why-inner">
+    <div class="why-visual">
+      <div class="why-visual-bg">
+        <div class="why-big-num">30+</div>
+        <div class="why-feature-list">
+          <div class="why-feature">
+            <div class="why-feature-icon">👨‍⚕️</div>
+            <div class="why-feature-text">
+              <h5>World-Class Surgeons</h5>
+              <p>Exceptional care through unparalleled skill and decades of expertise.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">💊</div>
+            <div class="why-feature-text">
+              <h5>Cutting-Edge Surgical Solutions</h5>
+              <p>Experience precision and innovation with the latest surgical advances.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">💙</div>
+            <div class="why-feature-text">
+              <h5>Patient-Centric Approach</h5>
+              <p>Personalized care for a better, more compassionate healthcare experience.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">💰</div>
+            <div class="why-feature-text">
+              <h5>Quality at Affordable Price</h5>
+              <p>Services that are both accessible and affordable without compromising quality.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-eyebrow">Why Choose Aswini</div>
+      <h2 class="section-title">Your Trusted <em>Healthcare</em> Partner in Thrissur</h2>
+      <p class="section-desc">Our state-of-the-art infrastructure, equipped with the latest medical technology, ensures the highest quality care across 30+ specialized departments.</p>
+      <div class="why-points">
+        <div class="why-point">
+          <div class="check">✓</div>
+          <div>
+            <h5>Comprehensive Multispecialty Care</h5>
+            <p>From preventive care to complex surgeries — all under one roof with seamlessly integrated services.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="check">✓</div>
+          <div>
+            <h5>Advanced Medical Technology</h5>
+            <p>Equipped with the latest diagnostic and treatment technologies for accurate and efficient care.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="check">✓</div>
+          <div>
+            <h5>Decades of Trusted Experience</h5>
+            <p>Serving the Thrissur community for decades as the region's most trusted and recognized hospital.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="check">✓</div>
+          <div>
+            <h5>Compassionate, Round-the-Clock Support</h5>
+            <p>Our dedicated team of doctors, nurses, and support staff is committed to your well-being 24/7.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPARTMENTS -->
+<section class="departments">
+  <div class="departments-inner">
+    <div class="section-eyebrow">Expert Care Across Every Field</div>
+    <h2 class="section-title" style="color:white">Our <em>Departments</em></h2>
+    <div class="dept-grid">
+      <div class="dept-card"><div class="dept-icon">❤️</div><h5>Cardiology</h5></div>
+      <div class="dept-card"><div class="dept-icon">🦴</div><h5>Orthopaedics</h5></div>
+      <div class="dept-card"><div class="dept-icon">🧠</div><h5>Neurology</h5></div>
+      <div class="dept-card"><div class="dept-icon">🤰</div><h5>Gynaecology</h5></div>
+      <div class="dept-card"><div class="dept-icon">👶</div><h5>Paediatrics</h5></div>
+      <div class="dept-card"><div class="dept-icon">🔬</div><h5>Oncology</h5></div>
+      <div class="dept-card"><div class="dept-icon">👁️</div><h5>Ophthalmology</h5></div>
+      <div class="dept-card"><div class="dept-icon">🦷</div><h5>Dentistry</h5></div>
+      <div class="dept-card"><div class="dept-icon">🫁</div><h5>Pulmonology</h5></div>
+      <div class="dept-card"><div class="dept-icon">🩺</div><h5>General Medicine</h5></div>
+      <div class="dept-card"><div class="dept-icon">⚕️</div><h5>General Surgery</h5></div>
+      <div class="dept-card"><div class="dept-icon">🩻</div><h5>Radiology</h5></div>
+      <div class="dept-card"><div class="dept-icon">🧬</div><h5>Dermatology</h5></div>
+      <div class="dept-card"><div class="dept-icon">🦻</div><h5>ENT</h5></div>
+      <div class="dept-card"><div class="dept-icon">🩸</div><h5>Haematology</h5></div>
+    </div>
+  </div>
+</section>
+
+<!-- 24/7 SERVICE -->
+<section class="service-section">
+  <div class="service-inner">
+    <div>
+      <div class="section-eyebrow">Round-the-Clock Support</div>
+      <h2 class="section-title">24/7 <em>Service</em></h2>
+      <p class="section-desc">Experience unparalleled, round-the-clock care at our multispecialty hospital in Thrissur.</p>
+      <div class="service-cards" style="margin-top: 36px;">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <div>
+            <h4>Emergency Department</h4>
+            <p>Equipped to handle a wide range of traumatic injuries with rapid assessment and stabilization protocols to ensure timely and effective care.</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <div>
+            <h4>Intensive Care Unit</h4>
+            <p>Staffed by highly trained specialists providing round-the-clock critical care with advanced life support systems and monitoring equipment.</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <div>
+            <h4>Trauma Surgery</h4>
+            <p>Skilled surgeons performing complex procedures to address severe injuries, focused on minimizing blood loss and optimizing patient outcomes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="trauma-box">
+      <div class="section-eyebrow">Our Legacy</div>
+      <div class="trauma-title">Decades of Trauma Care Excellence</div>
+      <p>As Thrissur's most trusted name in trauma care for decades, our hospital is dedicated to providing expert, immediate treatment for critical injuries. Our experienced team, cutting-edge technology, and comprehensive approach ensure the highest standard of care during the most challenging times.</p>
+      <div class="trauma-stats">
+        <div class="trauma-stat">
+          <div class="num">30+</div>
+          <div class="lbl">Years of Service</div>
+        </div>
+        <div class="trauma-stat">
+          <div class="num">50K+</div>
+          <div class="lbl">Patients Treated</div>
+        </div>
+        <div class="trauma-stat">
+          <div class="num">200+</div>
+          <div class="lbl">Medical Staff</div>
+        </div>
+        <div class="trauma-stat">
+          <div class="num">98%</div>
+          <div class="lbl">Patient Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom: 0;">
+        <div class="logo-icon" style="width:40px;height:40px;font-size:1.2rem;">✚</div>
+        <div class="logo-text">
+          <span class="logo-name">Aswini Hospital Ltd.</span>
+          <span class="logo-sub">Thrissur, Kerala</span>
+        </div>
+      </div>
+      <p>Your trusted multispecialty healthcare partner in Thrissur, delivering compassionate, world-class care for over three decades.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#">f</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">🐦</a>
+        <a class="social-btn" href="#">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h6>Quick Links</h6>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Departments</a></li>
+        <li><a href="#">Specialty Clinics</a></li>
+        <li><a href="#">Bone & Joint Foundation</a></li>
+        <li><a href="#">Institute</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h6>Services</h6>
+      <ul>
+        <li><a href="#">Emergency Care</a></li>
+        <li><a href="#">Surgical Services</a></li>
+        <li><a href="#">Diagnostics & Lab</a></li>
+        <li><a href="#">Blood Bank</a></li>
+        <li><a href="#">ICU & Critical Care</a></li>
+        <li><a href="#">Pharmacy</a></li>
+        <li><a href="#">Health Checkups</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h6>Contact Us</h6>
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <p><strong>Address</strong>Aswini Hospital Ltd., Thrissur, Kerala, India</p>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <p><strong>Phone</strong><a href="tel:04876612345" style="color:rgba(255,255,255,0.5);text-decoration:none;">0487 6612345</a><br><a href="tel:9895601234" style="color:rgba(255,255,255,0.5);text-decoration:none;">9895601234</a></p>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <p><strong>Email</strong><a href="mailto:aswinihospitalprd@gmail.com" style="color:rgba(255,255,255,0.5);text-decoration:none;">aswinihospitalprd@gmail.com</a></p>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🕐</div>
+        <p><strong>Emergency</strong>24 hours / 7 days a week</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Aswini Hospital Ltd. All rights reserved.</span>
+    <span>Designed with ❤️ for better healthcare</span>
+  </div>
+</footer>
+
+</body>
+</html>
