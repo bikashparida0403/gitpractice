@@ -1,0 +1,442 @@
+╔══════════════════════════════════════════════════════════════════╗
+║          LexAI Platform — Full Setup Guide (New Laptop)          ║
+║                   Run this in order, step by step                ║
+╚══════════════════════════════════════════════════════════════════╝
+
+=========================================================================
+SECTION 1 — SOFTWARE TO DOWNLOAD & INSTALL FIRST
+=========================================================================
+
+The following tools must be installed before anything else.
+Download links are listed beside each tool.
+
+1. Node.js (v20 or higher)
+   → https://nodejs.org/en/download
+   → Choose "LTS" version (Windows Installer .msi)
+   Dummy output after install:
+     > node --version
+     v20.18.0
+
+2. Python (v3.11 or higher)
+   → https://www.python.org/downloads/
+   → Check "Add Python to PATH" during install!
+   Dummy output after install:
+     > python --version
+     Python 3.11.9
+
+3. pnpm (Package Manager for Node)
+   → Install AFTER Node.js via terminal:
+     > npm install -g pnpm@9.15.0
+   Dummy output:
+     > pnpm --version
+     9.15.0
+
+4. Git
+   → https://git-scm.com/download/win
+   Dummy output after install:
+     > git --version
+     git version 2.47.0.windows.1
+
+5. Redis (for rate limiting/caching)
+   → On Windows, use WSL2 or Docker (recommended):
+     Option A - Docker Desktop: https://www.docker.com/products/docker-desktop/
+     Option B - Redis on WSL: Enable WSL2 from Windows features first.
+   
+   Quick Redis via Docker:
+     > docker run -d -p 6379:6379 --name redis redis:alpine
+   
+   Dummy output:
+     > docker ps
+     CONTAINER ID   IMAGE          COMMAND                  STATUS
+     a1b2c3d4e5f6   redis:alpine   "docker-entrypoint.s…"   Up 5 seconds
+
+6. VS Code (optional but recommended)
+   → https://code.visualstudio.com/download
+
+
+=========================================================================
+SECTION 2 — ACCOUNTS & API KEYS YOU NEED
+=========================================================================
+
+Before running the project, make sure you have accounts and keys for:
+
+  ┌─────────────────────────────────────────────────────────┐
+  │  SERVICE          │  WHERE TO GET IT                    │
+  ├─────────────────────────────────────────────────────────┤
+  │  Supabase         │  https://supabase.com               │
+  │                   │  (Free tier works)                  │
+  │                   │  You need:                          │
+  │                   │   - SUPABASE_URL                    │
+  │                   │   - SUPABASE_SERVICE_ROLE_KEY       │
+  │                   │   - SUPABASE_JWT_SECRET             │
+  ├─────────────────────────────────────────────────────────┤
+  │  OpenAI           │  https://platform.openai.com        │
+  │                   │  You need:                          │
+  │                   │   - OPENAI_API_KEY                  │
+  ├─────────────────────────────────────────────────────────┤
+  │  LangSmith        │  https://smith.langchain.com        │
+  │  (optional)       │  You need:                          │
+  │                   │   - LANGCHAIN_API_KEY               │
+  └─────────────────────────────────────────────────────────┘
+
+
+=========================================================================
+SECTION 3 — COPY THE PROJECT TO THE NEW LAPTOP
+=========================================================================
+
+Option A — Copy folder manually (USB / Google Drive / etc.)
+  Copy the entire "New folder" to the new laptop.
+  Place it somewhere easy, e.g. C:\Projects\lexai-platform\
+
+Option B — Git clone (if you pushed to GitHub)
+  > git clone https://github.com/YOUR_USERNAME/lexai-platform.git
+  > cd lexai-platform
+
+  Dummy output:
+    Cloning into 'lexai-platform'...
+    remote: Enumerating objects: 312, done.
+    remote: Counting objects: 100% (312/312), done.
+    Resolving deltas: 100% (87/87), done.
+
+
+=========================================================================
+SECTION 4 — OPEN A TERMINAL AND NAVIGATE TO THE PROJECT
+=========================================================================
+
+Open PowerShell or Command Prompt, then:
+
+  > cd C:\Projects\lexai-platform
+
+  (or wherever you placed the folder)
+
+  Dummy output:
+    PS C:\Projects\lexai-platform>
+
+
+=========================================================================
+SECTION 5 — INSTALL JAVASCRIPT / NODE DEPENDENCIES
+=========================================================================
+
+Run from the ROOT of the project (where package.json is):
+
+  > pnpm install
+
+  Dummy output:
+    Packages: +847
+    Progress: resolved 847, reused 0, downloaded 847, added 847
+    Done in 42.3s
+
+This installs all frontend packages for:
+  - apps/web  (Next.js 15 + React 19 + Tailwind CSS)
+  - packages/shared  (Shared TypeScript types)
+
+
+=========================================================================
+SECTION 6 — SET UP PYTHON VIRTUAL ENVIRONMENT (for the API)
+=========================================================================
+
+Navigate to the API folder:
+
+  > cd apps\api
+
+Create a virtual environment:
+
+  > python -m venv venv
+
+  Dummy output:
+    (no output, creates a "venv" folder)
+
+Activate the virtual environment:
+
+  On Windows PowerShell:
+  > .\venv\Scripts\Activate.ps1
+
+  On Windows CMD:
+  > .\venv\Scripts\activate.bat
+
+  Dummy output after activation:
+    (venv) PS C:\Projects\lexai-platform\apps\api>
+
+  (You should see "(venv)" at the start of the line)
+
+
+=========================================================================
+SECTION 7 — INSTALL PYTHON PACKAGES
+=========================================================================
+
+Still inside apps/api with venv activated:
+
+  > pip install -r requirements.txt
+
+  Dummy output:
+    Collecting fastapi==0.115.6
+      Downloading fastapi-0.115.6-py3-none-any.whl (94 kB)
+    Collecting uvicorn[standard]==0.34.0
+      Downloading uvicorn-0.34.0-py3-none-any.whl (61 kB)
+    Collecting openai==1.59.6
+      Downloading openai-1.59.6-py3-none-any.whl (389 kB)
+    Collecting langchain==0.3.13
+      Downloading langchain-0.3.13-py3-none-any.whl (1.0 MB)
+    ...
+    Successfully installed fastapi-0.115.6 uvicorn-0.34.0 openai-1.59.6
+    langchain-0.3.13 langchain-openai-0.2.14 supabase-2.10.0
+    pypdf-5.1.0 python-docx-1.1.2 redis-5.2.1 slowapi-0.1.9
+    pydantic-2.10.4 pydantic-settings-2.7.0 structlog-24.4.0
+    sentry-sdk-2.19.2 cryptography-44.0.0 passlib-1.7.4
+    sentence-transformers-3.3.1 tiktoken-0.8.0 ... (and more)
+
+  NOTE: This may take 5-10 minutes. Large packages like
+  sentence-transformers and unstructured will take the longest.
+
+
+=========================================================================
+SECTION 8 — CREATE ENVIRONMENT FILES (.env)
+=========================================================================
+
+You need TWO .env files — one for the API and one for the Web.
+
+----------------------------------------------------------------------
+8A. API environment file
+----------------------------------------------------------------------
+
+Navigate back to the API folder (apps/api) and create a file named ".env"
+
+  > cd C:\Projects\lexai-platform\apps\api
+  > copy NUL .env      (creates empty .env file on Windows)
+
+Open .env in any text editor and paste this content,
+replacing the DUMMY VALUES with your real keys:
+
+-------- apps/api/.env --------
+ENVIRONMENT=development
+SECRET_KEY=your-random-secret-key-at-least-32-chars
+
+SUPABASE_URL=https://xxxxxxxxxxxxxxxxxxx.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.XXXXXXXXXX
+SUPABASE_JWT_SECRET=your-supabase-jwt-secret
+
+OPENAI_API_KEY=sk-proj-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+OPENAI_CHAT_MODEL=gpt-4o
+OPENAI_EMBEDDING_MODEL=text-embedding-3-small
+
+LANGCHAIN_TRACING_V2=false
+LANGCHAIN_API_KEY=
+LANGCHAIN_PROJECT=lexai-dev
+
+REDIS_URL=redis://localhost:6379
+
+ALLOWED_ORIGINS=["http://localhost:3000"]
+ALLOWED_HOSTS=["localhost","127.0.0.1"]
+-------------------------------
+
+----------------------------------------------------------------------
+8B. Web (Next.js) environment file
+----------------------------------------------------------------------
+
+Navigate to apps/web and create a file named ".env.local"
+
+  > cd C:\Projects\lexai-platform\apps\web
+  > copy NUL .env.local
+
+Open .env.local and paste this content:
+
+-------- apps/web/.env.local --------
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxxxxxxxxxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.XXXXXXXXXX
+NEXT_PUBLIC_API_URL=http://localhost:8000
+--------------------------------------
+
+  NOTE: NEXT_PUBLIC_SUPABASE_ANON_KEY is the "anon/public" key from
+  Supabase (different from the SERVICE_ROLE_KEY used in the API).
+  Find it in your Supabase project → Settings → API → Project API Keys.
+
+
+=========================================================================
+SECTION 9 — SET UP THE DATABASE (Supabase)
+=========================================================================
+
+Your database migrations are in the supabase/migrations/ folder.
+Run them in order inside Supabase SQL Editor:
+
+  1. Go to https://supabase.com → your project → SQL Editor
+  2. Open and run:  supabase/migrations/001_initial_schema.sql
+  3. (optional) Run: supabase/seed.sql  to populate test data
+
+  OR use Supabase CLI:
+
+  > npm install -g supabase
+  > supabase login
+  > supabase link --project-ref YOUR_PROJECT_REF
+  > supabase db push
+
+  Dummy output:
+    Applying migration 001_initial_schema.sql...✓
+    Migration applied successfully.
+
+
+=========================================================================
+SECTION 10 — START THE API (FastAPI Backend)
+=========================================================================
+
+Open a NEW terminal window.
+Navigate to the API folder and activate venv:
+
+  > cd C:\Projects\lexai-platform\apps\api
+  > .\venv\Scripts\Activate.ps1
+
+Start the API server:
+
+  > uvicorn main:app --reload --port 8000
+
+  Dummy output:
+    INFO:     Will watch for changes in these directories: ['C:\\Projects\\lexai-platform\\apps\\api']
+    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+    INFO:     Started reloader process [12345] using WatchFiles
+    INFO:     Started server process [12346]
+    INFO:     Waiting for application startup.
+    INFO:     Application startup complete.
+
+  The API is now running at:  http://localhost:8000
+  API docs available at:      http://localhost:8000/docs
+
+
+=========================================================================
+SECTION 11 — START THE WEB APP (Next.js Frontend)
+=========================================================================
+
+Open ANOTHER NEW terminal window.
+Navigate to the ROOT of the project:
+
+  > cd C:\Projects\lexai-platform
+
+Start the web dev server:
+
+  > pnpm dev
+
+  Dummy output:
+    • Packages in scope: @lexai/web, @lexai/shared
+    • Running dev in 2 packages
+    @lexai/web:dev: ▲ Next.js 15.2.0 (Turbopack)
+    @lexai/web:dev:   - Local:    http://localhost:3000
+    @lexai/web:dev:   - Network:  http://192.168.1.100:3000
+    @lexai/web:dev: ✓ Starting...
+    @lexai/web:dev: ✓ Ready in 2.3s
+
+  The app is now running at: http://localhost:3000
+
+
+=========================================================================
+SECTION 12 — VERIFY EVERYTHING IS WORKING
+=========================================================================
+
+Open your browser and check:
+
+  ✓ Frontend:         http://localhost:3000          → Should show landing page
+  ✓ API Health:       http://localhost:8000/docs      → Should show Swagger UI
+  ✓ Client Login:     http://localhost:3000/auth/client/login
+  ✓ Admin Login:      http://localhost:3000/auth/team/login
+
+
+=========================================================================
+SECTION 13 — SUMMARY OF ALL TERMINAL COMMANDS (QUICK REFERENCE)
+=========================================================================
+
+--- One-time setup ---
+npm install -g pnpm@9.15.0
+cd C:\Projects\lexai-platform
+pnpm install
+cd apps\api
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+--- Every time you want to run the project (needs 2 terminals) ---
+
+  Terminal 1 (API):
+    cd C:\Projects\lexai-platform\apps\api
+    .\venv\Scripts\Activate.ps1
+    uvicorn main:app --reload --port 8000
+
+  Terminal 2 (Web):
+    cd C:\Projects\lexai-platform
+    pnpm dev
+
+
+=========================================================================
+SECTION 14 — TROUBLESHOOTING
+=========================================================================
+
+PROBLEM: pnpm not found
+  FIX: Run  npm install -g pnpm@9.15.0  and restart your terminal
+
+PROBLEM: "Activate.ps1 cannot be loaded because running scripts is disabled"
+  FIX: Run this once in PowerShell as Administrator:
+       Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+PROBLEM: Python packages fail to install (unstructured, sentence-transformers)
+  FIX: Make sure Visual C++ Build Tools are installed:
+       https://visualstudio.microsoft.com/visual-cpp-build-tools/
+
+PROBLEM: Redis connection error
+  FIX: Make sure Redis is running.
+       Run Docker command:  docker run -d -p 6379:6379 --name redis redis:alpine
+
+PROBLEM: Supabase/OpenAI errors in the API
+  FIX: Double-check your apps/api/.env file has the correct keys with no spaces
+
+PROBLEM: Next.js shows blank page or 500 error
+  FIX: Double-check apps/web/.env.local has NEXT_PUBLIC_SUPABASE_URL and
+       NEXT_PUBLIC_SUPABASE_ANON_KEY set correctly
+
+
+=========================================================================
+SECTION 15 — PACKAGE VERSIONS SUMMARY
+=========================================================================
+
+SYSTEM REQUIREMENTS:
+  Node.js       >= 20.0.0
+  Python        >= 3.11
+  pnpm          9.15.0
+  Git           (any recent version)
+
+KEY PYTHON PACKAGES (from requirements.txt):
+  fastapi               0.115.6
+  uvicorn               0.34.0
+  openai                1.59.6
+  langchain             0.3.13
+  langchain-openai      0.2.14
+  langchain-community   0.3.13
+  langgraph             0.2.59
+  supabase              2.10.0
+  pydantic              2.10.4
+  pypdf                 5.1.0
+  python-docx           1.1.2
+  sentence-transformers 3.3.1
+  redis                 5.2.1
+  slowapi               0.1.9
+  cryptography          44.0.0
+  passlib               1.7.4
+  structlog             24.4.0
+  sentry-sdk            2.19.2
+  tiktoken              0.8.0
+  pytest                8.3.4
+
+KEY JAVASCRIPT PACKAGES (from apps/web/package.json):
+  next                  ^15.2.0
+  react                 ^19.0.0
+  @supabase/supabase-js ^2.47.2
+  @supabase/ssr         ^0.5.2
+  tailwindcss           ^3.4.17
+  typescript            ^5.7.3
+  @tanstack/react-query ^5.64.1
+  zustand               ^5.0.3
+  recharts              ^2.15.0
+  lucide-react          ^0.474.0
+  react-markdown        ^9.0.1
+  react-dropzone        ^14.3.5
+  sonner                ^2.0.0
+  turbo (dev)           ^2.3.0
+
+══════════════════════════════════════════════════════════════════════════
+                        END OF SETUP GUIDE
+══════════════════════════════════════════════════════════════════════════
